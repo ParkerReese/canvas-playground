@@ -13,9 +13,6 @@ export class Circle {
   }
 
   public move() {
-    // Clear old circle
-    this.clear();
-
     // Draw new circle
     this.xCoord = this.getNextXCoord();
     this.yCoord = this.getNextYCoord();
@@ -23,24 +20,17 @@ export class Circle {
   }
 
   private getNextXCoord(): number {
-    if (this.xCoord + this.radius > this.maxXCoord || this.xCoord - this.radius < 0) {
+    if ((this.xCoord + this.radius) > this.maxXCoord || this.xCoord - this.radius < 0) {
       this.xSpeed = -this.xSpeed;
     }
     return this.xCoord += this.xSpeed
   }
 
   private getNextYCoord(): number {
-    if (this.yCoord + this.radius > this.maxYCoord || this.yCoord - this.radius < 0) {
+    if ((this.yCoord + this.radius) > this.maxYCoord || (this.yCoord - this.radius) < 0) {
       this.ySpeed = -this.ySpeed;
     }
     return this.yCoord += this.ySpeed
-  }
-
-  private clear() {
-    const diameter = this.radius * 2;
-    const bottomLeftXCoord = this.xCoord - this.radius - 1;
-    const bottomLeftYCoord = this.yCoord - this.radius - 1;
-    this.ctx.clearRect(bottomLeftXCoord, bottomLeftYCoord, diameter + 2, diameter + 2);
   }
 
   private draw() {
