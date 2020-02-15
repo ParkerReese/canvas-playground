@@ -6,7 +6,7 @@ import {LeftNavComponent} from './left-nav/left-nav.component';
 import {MaterialModule} from "./material-module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterModule, Routes} from "@angular/router";
-import {MovingCirclesComponent} from './moving-circles/moving-circles.component';
+import {MovingCirclesComponent} from "./canvas-demos/moving-circles/moving-circles.component";
 
 const appRoutes: Routes = [
   {path: '',  component: MovingCirclesComponent, data: {title: 'Moving Circles'}},
