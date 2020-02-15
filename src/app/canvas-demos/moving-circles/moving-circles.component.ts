@@ -17,8 +17,10 @@ export class MovingCirclesComponent implements OnInit, OnDestroy {
   private innerWidth: number;
 
   private totalCircles = 50;
-  private circleRadius = 25;
   private circles: Circle[] = newArray(this.totalCircles);
+
+  private colors: string[] = ['#355c7d', '#6c5b7b', '#c06c84', '#f67280'];
+  private radiusOptions: number[] = [5, 15, 25];
 
   constructor(private ngZone: NgZone) {
   }
@@ -43,22 +45,26 @@ export class MovingCirclesComponent implements OnInit, OnDestroy {
 
   // Create the circles
   private instantiateCircles(): void {
-    const diameter = this.circleRadius * 2;
 
     let i = 0;
     while (i < this.totalCircles) {
+      const randRadius = this.radiusOptions[Math.floor(Math.random() * this.radiusOptions.length)];
+      const diameter = randRadius * 2;
       // Dont let the circle spawn outside the bounds of the window
-      const randXCoord = Math.floor(Math.random() * (this.innerWidth - diameter)) + this.circleRadius;
-      const randYCoord = Math.floor(Math.random() * (this.innerHeight - diameter)) + this.circleRadius;
+      const randXCoord = Math.floor(Math.random() * (this.innerWidth - diameter)) + randRadius;
+      const randYCoord = Math.floor(Math.random() * (this.innerHeight - diameter)) + randRadius;
+
       const minusOrPlus = (): number => {
         return (Math.random() < 0.5 ? -1 : 1);
       };
       const randXSpeed = minusOrPlus() * Math.random() * 3;
       const randYSpeed = minusOrPlus() * Math.random() * 3;
 
+      const randColor = this.colors[Math.floor(Math.random() * this.colors.length)];
+
       this.circles[i] = new Circle(
-        this.ctx, this.circleRadius, randXCoord, randYCoord,
-        randXSpeed, randYSpeed, this.innerWidth, this.innerHeight
+        this.ctx, randRadius, randXCoord, randYCoord,
+        randXSpeed, randYSpeed, this.innerWidth, this.innerHeight, randColor
       );
       i++;
     }

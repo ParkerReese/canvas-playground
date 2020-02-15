@@ -7,7 +7,8 @@ export class Circle {
               private xSpeed: number,
               private ySpeed: number,
               private maxXCoord: number,
-              private maxYCoord: number
+              private maxYCoord: number,
+              private color: string
   ) {
     this.draw();
   }
@@ -36,6 +37,8 @@ export class Circle {
   private draw() {
     this.ctx.beginPath();
     this.ctx.arc(this.xCoord, this.yCoord, this.radius, 0, 2 * Math.PI);
+    this.ctx.fillStyle = this.color;
+    this.ctx.fill();
     this.ctx.stroke();
   }
 }
