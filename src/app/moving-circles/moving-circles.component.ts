@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-moving-circles',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovingCirclesComponent implements OnInit {
 
+  @ViewChild('canvas', { static: true })
+  canvas: ElementRef<HTMLCanvasElement>;
+
+  private ctx: CanvasRenderingContext2D;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.ctx = this.canvas.nativeElement.getContext('2d');
   }
 
 }
