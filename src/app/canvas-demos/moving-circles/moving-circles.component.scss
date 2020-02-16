@@ -1,0 +1,14 @@
+.toggle {
+  display: flex;
+  margin-left: 12px;
+  margin-top: 16px;
+  align-items: center;
+  font-size: 18px;
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}

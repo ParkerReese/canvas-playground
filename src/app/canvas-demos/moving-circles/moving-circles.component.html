@@ -1,1 +1,12 @@
-<canvas #canvas></canvas>
+<div class="toggle">
+  Total Circles:
+  <mat-slider [max]="maxCircleCount"
+              [min]="0"
+              [value]="defaultCircleCount"
+              thumbLabel="true"
+              color="primary"
+              (valueChange)="totalCirclesChange($event)">
+  </mat-slider>
+</div>
+
+<canvas #canvas class="canvas"></canvas>
