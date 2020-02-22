@@ -21,6 +21,9 @@ export class MovingCirclesComponent implements OnInit, OnDestroy {
   private colors: string[] = ['#355c7d', '#6c5b7b', '#c06c84', '#f67280'];
   private radiusOptions: number[] = [8, 16, 24];
 
+  private intervalId: any;
+  private requestedAnimationFrame: number;
+
   constructor(private ngZone: NgZone) {
   }
 
@@ -40,7 +43,7 @@ export class MovingCirclesComponent implements OnInit, OnDestroy {
 
     this.ngZone.runOutsideAngular(() => this.animate()); // Used to not fire change detection when animating
     // Call the animate() function ever interval in ms
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.animate();
     }, 15); // 15ms is a little bit faster than 60Hz
   }
@@ -90,7 +93,7 @@ export class MovingCirclesComponent implements OnInit, OnDestroy {
 
   // Move the circles given their initialized values
   private animate(): void {
-    requestAnimationFrame(() => this.animate);
+    this.requestedAnimationFrame = requestAnimationFrame(() => this.animate);
 
     this.clearCanvas();
     this.circles.forEach(c => {
@@ -107,6 +110,7 @@ export class MovingCirclesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    clearInterval()
+    clearInterval(this.intervalId);
+    cancelAnimationFrame(this.requestedAnimationFrame);
   }
 }
