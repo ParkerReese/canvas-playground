@@ -11,7 +11,7 @@ export class LinesComponent implements OnInit {
   private canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D;
 
-  private colors: string[] = ['#355c7d', '#6c5b7b', '#c06c84', '#f67280'];
+  private colors: string[] = ['#ffbd69', '#fe346e', '#b21f66', '#381460'];
 
   constructor() {
   }
@@ -34,6 +34,8 @@ export class LinesComponent implements OnInit {
     this.ctx.beginPath();
     // All lines will be drawn from the bottom middle, for simplicity
     this.ctx.moveTo(this.ctx.canvas.width / 2, this.ctx.canvas.height,);
+
+    this.ctx.strokeStyle = this.colors[Math.floor(Math.random() * this.colors.length)]; // random color
 
     this.ctx.lineTo(xPos, yPos);
     this.ctx.stroke();
