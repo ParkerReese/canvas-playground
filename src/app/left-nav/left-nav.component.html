@@ -14,7 +14,12 @@
     <!--    Left Menu Items-->
     <mat-sidenav #drawer>
       <mat-nav-list>
-        <a mat-list-item routerLink='/moving-circles'><mat-icon>all_out</mat-icon>Moving Circles</a>
+        <a *ngFor="let navItem of NavItems"
+           mat-list-item
+           [routerLink]="navItem.routerLink">
+          <mat-icon>{{navItem.icon}}</mat-icon>
+          {{navItem.title}}
+        </a>
       </mat-nav-list>
     </mat-sidenav>
     <!--    Page Content-->
