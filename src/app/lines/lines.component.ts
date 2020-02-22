@@ -24,7 +24,7 @@ export class LinesComponent implements OnInit {
     this.ctx.canvas.width = window.innerWidth;
   }
 
-  // Draw line on mouse clck
+  // Handle mouse click event on the canvas
   public mouseClick(event: MouseEvent): void {
     this.drawLine(event.offsetX, event.offsetY)
   }
@@ -40,7 +40,7 @@ export class LinesComponent implements OnInit {
   }
 
   public clearCanvas() {
-    this.ctx.clearRect(0, 0, this.ctx.canvas.height, this.ctx.canvas.width);
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
   }
 
 }
