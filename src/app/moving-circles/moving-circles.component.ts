@@ -2,7 +2,7 @@ import {Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild} from '@angu
 import {Circle} from "./circle";
 
 @Component({
-  selector: 'app-moving-circles',
+  selector: 'moving-circles',
   templateUrl: './moving-circles.component.html',
   styleUrls: ['./moving-circles.component.scss']
 })

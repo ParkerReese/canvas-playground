@@ -11,11 +11,13 @@ import {MovingCirclesComponent} from "./moving-circles/moving-circles.component"
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from '@angular/common';
 import {ColorPickerModule} from "ngx-color-picker";
+import { RayGunComponent } from './ray-gun/ray-gun.component';
 
 const appRoutes: Routes = [
   {path: '', component: MovingCirclesComponent, data: {title: 'Moving Circles'}},
   {path: 'moving-circles', component: MovingCirclesComponent, data: {title: 'Moving Circles'}},
-  {path: 'lines', component: LinesComponent, data: {title: 'Lines'}}
+  {path: 'lines', component: LinesComponent, data: {title: 'Lines'}},
+  {path: 'ray-gun', component: RayGunComponent, data: {title: 'Ray Gun'}}
 ];
 
 @NgModule({
@@ -24,6 +26,7 @@ const appRoutes: Routes = [
     LeftNavComponent,
     MovingCirclesComponent,
     LinesComponent,
+    RayGunComponent,
   ],
   imports: [
     CommonModule,
