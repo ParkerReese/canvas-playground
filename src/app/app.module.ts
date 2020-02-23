@@ -6,11 +6,16 @@ import {LeftNavComponent} from './left-nav/left-nav.component';
 import {MaterialModule} from "./material-module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterModule, Routes} from "@angular/router";
-import {MovingCirclesComponent} from "./canvas-demos/moving-circles/moving-circles.component";
+import {LinesComponent} from './lines/lines.component';
+import {MovingCirclesComponent} from "./moving-circles/moving-circles.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CommonModule} from '@angular/common';
+import {ColorPickerModule} from "ngx-color-picker";
 
 const appRoutes: Routes = [
-  {path: '',  component: MovingCirclesComponent, data: {title: 'Moving Circles'}},
-  {path: 'moving-circles', component: MovingCirclesComponent, data: {title: 'Moving Circles'}}
+  {path: '', component: MovingCirclesComponent, data: {title: 'Moving Circles'}},
+  {path: 'moving-circles', component: MovingCirclesComponent, data: {title: 'Moving Circles'}},
+  {path: 'lines', component: LinesComponent, data: {title: 'Lines'}}
 ];
 
 @NgModule({
@@ -18,10 +23,15 @@ const appRoutes: Routes = [
     AppComponent,
     LeftNavComponent,
     MovingCirclesComponent,
+    LinesComponent,
   ],
   imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ColorPickerModule,
     MaterialModule,
     RouterModule.forRoot(
       appRoutes,

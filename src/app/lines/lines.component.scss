@@ -1,0 +1,28 @@
+.gradient-config {
+  float: left;
+  margin-left: 12px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  min-width: 257px;
+}
+
+.color-picker {
+  position: inherit;
+  width: 20px;
+  height: 20px;
+}
+
+.clear-canvas-button {
+  float: left;
+  margin-top: 16px;
+  max-height: 36px;
+  margin-left: 24px;
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
