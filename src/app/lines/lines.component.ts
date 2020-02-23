@@ -19,6 +19,7 @@ export class LinesComponent implements OnInit {
   private colors: string[] = ['#ffbd69', '#fe346e', '#b21f66', '#381460'];
   useLinearGradient = false;
   colorStops: ColorStop[] = [{color: '', offset: 0}, {color: '', offset: 0}];
+  maxColorStops = 8;
 
   constructor() {
   }

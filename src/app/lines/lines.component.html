@@ -18,7 +18,7 @@
     </div>
     <span>
         <button mat-button color="primary" (click)="removeColorStop()">Remove</button>
-        <button mat-raised-button color="primary" (click)="addColorStop()">Add</button>
+        <button *ngIf="colorStops.length < maxColorStops" mat-raised-button color="primary" (click)="addColorStop()">Add</button>
       </span>
   </ng-container>
 </div>
