@@ -33,12 +33,16 @@ export class LinesComponent implements OnInit {
     this.ctx.canvas.width = window.innerWidth;
   }
 
-  addColorStop() {
+  public addColorStop() {
     this.colorStops.push({color: '', offset: 0});
   }
 
-  removeColorStop() {
+  public removeColorStop() {
     this.colorStops.pop();
+  }
+
+  public clearCanvas() {
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
   }
 
   // Handle mouse click event on the canvas
@@ -68,9 +72,4 @@ export class LinesComponent implements OnInit {
     this.ctx.lineTo(xPos, yPos);
     this.ctx.stroke();
   }
-
-  public clearCanvas() {
-    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-  }
-
 }
