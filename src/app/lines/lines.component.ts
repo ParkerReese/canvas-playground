@@ -33,9 +33,13 @@ export class LinesComponent implements OnInit {
   private drawLine(xPos: number, yPos: number) {
     this.ctx.beginPath();
     // All lines will be drawn from the bottom middle, for simplicity
-    this.ctx.moveTo(this.ctx.canvas.width / 2, this.ctx.canvas.height,);
+    this.ctx.moveTo(this.ctx.canvas.width / 2, this.ctx.canvas.height);
 
-    this.ctx.strokeStyle = this.colors[Math.floor(Math.random() * this.colors.length)]; // random color
+    // Style the line
+    const linearGradient = this.ctx.createLinearGradient(this.ctx.canvas.width / 2, this.ctx.canvas.height, xPos, yPos);
+    linearGradient.addColorStop(0, 'green');
+    linearGradient.addColorStop(1, 'blue');
+    this.ctx.strokeStyle = linearGradient;
 
     this.ctx.lineTo(xPos, yPos);
     this.ctx.stroke();
