@@ -18,7 +18,10 @@
         Color:
         <input class='color-picker' [(colorPicker)]="colorStop.color" [style.background]="colorStop.color"/>
       </div>
-      <button mat-raised-button color="primary" (click)="addColorStop()">Add Color Stop</button>
+      <span>
+        <button mat-button color="primary" (click)="removeColorStop()">Remove</button>
+        <button mat-raised-button color="primary" (click)="addColorStop()">Add</button>
+      </span>
     </ng-container>
   </div>
 
