@@ -1,21 +1,21 @@
-.form-container {
+.gradient-config {
   float: left;
-  display: flex;
   margin-left: 12px;
   margin-top: 16px;
-}
-
-.gradient-config {
   display: flex;
   flex-direction: column;
+  min-width: 257px;
 }
 
 .color-picker {
+  position: inherit;
   width: 20px;
   height: 20px;
 }
 
 .clear-canvas-button {
+  float: left;
+  margin-top: 16px;
   max-height: 36px;
   margin-left: 24px;
 }

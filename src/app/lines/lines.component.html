@@ -1,33 +1,30 @@
-<div class="form-container">
+<!-- Linear Gradient Configuration -->
+<div class="gradient-config">
+  <mat-slide-toggle color="primary" [(ngModel)]="useLinearGradient">
+    Use Linear Gradient
+  </mat-slide-toggle>
 
-  <!-- Linear Gradient Configuration -->
-  <div class="gradient-config">
-    <mat-slide-toggle color="primary" [(ngModel)]="useLinearGradient">
-      Use Linear Gradient
-    </mat-slide-toggle>
-
-    <ng-container *ngIf="useLinearGradient">
-      <div *ngFor="let colorStop of colorStops">
-        Offset:
-        <mat-slider [max]="100"
-                    [min]="0"
-                    thumbLabel="true"
-                    color="primary"
-                    [(ngModel)]="colorStop.offset">
-        </mat-slider>
-        Color:
-        <input class='color-picker' [(colorPicker)]="colorStop.color" [style.background]="colorStop.color"/>
-      </div>
-      <span>
+  <ng-container *ngIf="useLinearGradient">
+    <div *ngFor="let colorStop of colorStops">
+      Offset:
+      <mat-slider [max]="100"
+                  [min]="0"
+                  thumbLabel="true"
+                  color="primary"
+                  [(ngModel)]="colorStop.offset">
+      </mat-slider>
+      Color:
+      <input class='color-picker' [(colorPicker)]="colorStop.color" [style.background]="colorStop.color"/>
+    </div>
+    <span>
         <button mat-button color="primary" (click)="removeColorStop()">Remove</button>
         <button mat-raised-button color="primary" (click)="addColorStop()">Add</button>
       </span>
-    </ng-container>
-  </div>
-
-  <!-- Clear Canvas -->
-  <button mat-raised-button color="primary" (click)="clearCanvas()" class="clear-canvas-button">Clear Canvas</button>
+  </ng-container>
 </div>
+
+<!-- Clear Canvas -->
+<button mat-raised-button color="primary" (click)="clearCanvas()" class="clear-canvas-button">Clear Canvas</button>
 
 <!-- The Canvas!! -->
 <canvas #canvas class="canvas" (click)="mouseClick($event)"></canvas>
