@@ -9,7 +9,8 @@ export class Laser {
 
   public move() {
     // Update position
-    // Draw new circle
+    this.xCoord += 2;
+    // Draw new laser
     this.draw();
   }
 
@@ -22,6 +23,11 @@ export class Laser {
     linearGradient.addColorStop(0, 'rgba(255,255,255,0)'); // transparent white
     linearGradient.addColorStop(1, 'rgba(255,0,0,1)'); // transparent white
     this.ctx.strokeStyle = linearGradient;
+
+    this.ctx.lineWidth = 2;
+
+    this.ctx.shadowBlur = 1;
+    this.ctx.shadowColor = "orange";
 
     console.log('stroke');
     this.ctx.lineTo(this.xCoord + 100, this.yCoord);
