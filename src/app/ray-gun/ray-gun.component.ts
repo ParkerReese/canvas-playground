@@ -13,6 +13,7 @@ export class RayGunComponent implements OnInit, OnDestroy {
   private ctx: CanvasRenderingContext2D;
 
   private defaultSpeed = 4;
+  private defaultLength = 100;
 
   useCustomConfig = false;
   customSpeed = this.defaultSpeed;
@@ -46,7 +47,7 @@ export class RayGunComponent implements OnInit, OnDestroy {
     const xStartPos = event.offsetX;
     const yStartPos = event.offsetY + 9;
     const speed = this.useCustomConfig ? this.customSpeed : this.defaultSpeed;
-    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed));
+    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed, this.defaultLength));
   }
 
   // Move the circles given their initialized values
@@ -54,12 +55,13 @@ export class RayGunComponent implements OnInit, OnDestroy {
     this.requestedAnimationFrame = requestAnimationFrame(() => this.animate);
 
     this.clearCanvas();
-    this.lasers.forEach(l => {
-      if (!l) {
-        console.error('Null laser in array');
+    this.lasers.forEach((laser, index) => {
+      // Delete lasers that are off the page so we don't waste time drawing something you can't see
+      if (!laser || laser.x > this.ctx.canvas.width + this.defaultLength) {
+        this.lasers.splice(index,1);
         return;
       }
-      l.move()
+      laser.move()
     });
   }
 
