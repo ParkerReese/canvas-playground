@@ -18,6 +18,7 @@ export class RayGunComponent implements OnInit, OnDestroy {
   private defaultColor= 'rgba(255,0,0,1)'; // red
   private defaultGlowColor = 'orange';
   private defaultGlowWidth = 1;
+  private defaultTailColor = 'rgba(255,255,255,0)'; // transparent white
   useCustomConfig = false;
   customSpeed = this.defaultSpeed;
   customLength = this.defaultLength;
@@ -25,6 +26,7 @@ export class RayGunComponent implements OnInit, OnDestroy {
   customColor = this.defaultColor;
   customGlowColor = this.defaultGlowColor;
   customGlowWidth = this.defaultGlowWidth;
+  customTailColor = this.defaultTailColor;
 
   private lasers: Laser[] = [];
 
@@ -51,7 +53,7 @@ export class RayGunComponent implements OnInit, OnDestroy {
 
   // Handle mouse click event on the canvas
   public mouseClick(event: MouseEvent): void {
-    let speed, length, width, color, glowColor, glowWidth;
+    let speed, length, width, color, glowColor, glowWidth, tailColor;
     if (this.useCustomConfig) {
       speed = this.customSpeed;
       length = this.customLength;
@@ -59,6 +61,7 @@ export class RayGunComponent implements OnInit, OnDestroy {
       color = this.customColor;
       glowWidth = this.customGlowWidth;
       glowColor = this.customGlowColor;
+      tailColor = this.customTailColor;
     } else {
       speed = this.defaultSpeed;
       length = this.defaultLength;
@@ -66,12 +69,13 @@ export class RayGunComponent implements OnInit, OnDestroy {
       color = this.defaultColor;
       glowWidth = this.defaultGlowWidth;
       glowColor = this.defaultGlowColor;
+      tailColor = this.defaultTailColor;
     }
     // Need to offset the image of the ray gun cursor
     const xStartPos = event.offsetX - (length/4);
     const yStartPos = event.offsetY + 9;
 
-    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed, length, width, color, glowWidth, glowColor));
+    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed, length, width, color, glowWidth, glowColor, tailColor));
   }
 
   // Move the circles given their initialized values

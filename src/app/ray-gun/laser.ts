@@ -9,6 +9,7 @@ export class Laser {
               private color: string,
               private glowWidth: number,
               private glowColor: string,
+              private tailColor: string
   ) {
     this.draw();
   }
@@ -30,8 +31,8 @@ export class Laser {
     this.ctx.moveTo(this.xCoord, this.yCoord);
 
     const linearGradient = this.ctx.createLinearGradient(this.xCoord, this.yCoord, this.xCoord + this.length, this.yCoord);
-    linearGradient.addColorStop(0, 'rgba(255,255,255,0)'); // transparent white
-    linearGradient.addColorStop(1, this.color); // red
+    linearGradient.addColorStop(0, this.tailColor);
+    linearGradient.addColorStop(1, this.color);
     this.ctx.strokeStyle = linearGradient;
 
     this.ctx.lineWidth = this.width;

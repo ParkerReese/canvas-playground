@@ -49,6 +49,10 @@
                   [(ngModel)]="customGlowWidth">
       </mat-slider>
     </div>
+    <div>
+      Tail Color:
+      <input class='color-picker' [(colorPicker)]="customTailColor" [style.background]="customTailColor"/>
+    </div>
   </ng-container>
 </div>
 
