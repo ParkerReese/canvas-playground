@@ -6,6 +6,12 @@
   flex-direction: column;
 }
 
+.color-picker {
+  position: inherit;
+  width: 20px;
+  height: 20px;
+}
+
 .canvas {
   position: absolute;
   top: 0;

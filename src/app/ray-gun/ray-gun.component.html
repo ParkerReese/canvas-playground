@@ -32,6 +32,10 @@
                   [(ngModel)]="customWidth">
       </mat-slider>
     </div>
+    <div>
+      Color:
+      <input class='color-picker' [(colorPicker)]="customColor" [style.background]="customColor"/>
+    </div>
   </ng-container>
 </div>
 
