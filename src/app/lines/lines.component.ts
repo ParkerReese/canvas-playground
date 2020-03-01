@@ -60,7 +60,6 @@ export class LinesComponent implements OnInit {
     if (this.useLinearGradient) {
       const linearGradient = this.ctx.createLinearGradient(this.ctx.canvas.width / 2, this.ctx.canvas.height, xPos, yPos);
       this.colorStops.forEach(colorStop => {
-        console.log(colorStop);
         const offset = colorStop.offset / 100; // needs to be 0-1
         linearGradient.addColorStop(offset, colorStop.color || '#ffffff');
       });
