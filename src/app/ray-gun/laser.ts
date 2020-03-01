@@ -6,7 +6,8 @@ export class Laser {
               private speed: number,
               private length: number,
               private width: number,
-              private color: string
+              private color: string,
+              private glowWidth: number
   ) {
     this.draw();
   }
@@ -34,7 +35,7 @@ export class Laser {
 
     this.ctx.lineWidth = this.width;
 
-    this.ctx.shadowBlur = 1;
+    this.ctx.shadowBlur = this.glowWidth;
     this.ctx.shadowColor = "orange";
 
     this.ctx.lineTo(this.xCoord + this.length, this.yCoord);
