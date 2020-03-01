@@ -14,9 +14,9 @@ export class RayGunComponent implements OnInit, OnDestroy {
 
   private defaultSpeed = 4;
   private defaultLength = 100;
-
   useCustomConfig = false;
   customSpeed = this.defaultSpeed;
+  customLength = this.defaultLength;
 
   private lasers: Laser[] = [];
 
@@ -43,11 +43,13 @@ export class RayGunComponent implements OnInit, OnDestroy {
 
   // Handle mouse click event on the canvas
   public mouseClick(event: MouseEvent): void {
-    // Need to offset the image of the ray gun cursor
-    const xStartPos = event.offsetX;
-    const yStartPos = event.offsetY + 9;
     const speed = this.useCustomConfig ? this.customSpeed : this.defaultSpeed;
-    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed, this.defaultLength));
+    const length = this.useCustomConfig ? this.customLength : this.defaultLength;
+    // Need to offset the image of the ray gun cursor
+    const xStartPos = event.offsetX - (length/4);
+    const yStartPos = event.offsetY + 9;
+
+    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed, length));
   }
 
   // Move the circles given their initialized values
@@ -57,7 +59,8 @@ export class RayGunComponent implements OnInit, OnDestroy {
     this.clearCanvas();
     this.lasers.forEach((laser, index) => {
       // Delete lasers that are off the page so we don't waste time drawing something you can't see
-      if (!laser || laser.x > this.ctx.canvas.width + this.defaultLength) {
+      const length = this.useCustomConfig ? this.customLength : this.defaultLength;
+      if (!laser || laser.x > this.ctx.canvas.width + length) {
         this.lasers.splice(index,1);
         return;
       }
