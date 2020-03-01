@@ -3,13 +3,14 @@ export class Laser {
   constructor(private ctx: CanvasRenderingContext2D,
               private xCoord: number,
               private yCoord: number,
+              private speed: number,
   ) {
     this.draw();
   }
 
   public move() {
     // Update position
-    this.xCoord += 2;
+    this.xCoord += this.speed;
     // Draw new laser
     this.draw();
   }

@@ -12,6 +12,11 @@ export class RayGunComponent implements OnInit, OnDestroy {
   private canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D;
 
+  private defaultSpeed = 4;
+
+  useCustomConfig = false;
+  customSpeed = this.defaultSpeed;
+
   private lasers: Laser[] = [];
 
   private intervalId: any;
@@ -40,7 +45,8 @@ export class RayGunComponent implements OnInit, OnDestroy {
     // Need to offset the image of the ray gun cursor
     const xStartPos = event.offsetX;
     const yStartPos = event.offsetY + 9;
-    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos));
+    const speed = this.useCustomConfig ? this.customSpeed : this.defaultSpeed;
+    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed));
   }
 
   // Move the circles given their initialized values

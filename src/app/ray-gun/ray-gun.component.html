@@ -1,1 +1,21 @@
+<!-- Laser config -->
+<div class="gradient-config">
+  <mat-slide-toggle color="primary" [(ngModel)]="useCustomConfig">
+    Customize Laser
+  </mat-slide-toggle>
+
+  <ng-container *ngIf="useCustomConfig">
+    <div>
+      Speed:
+      <mat-slider [max]="20"
+                  [min]="1"
+                  thumbLabel="true"
+                  color="primary"
+                  [(ngModel)]="customSpeed">
+      </mat-slider>
+    </div>
+  </ng-container>
+</div>
+
+<!-- The Canvas!! -->
 <canvas #canvas class="canvas" (click)="mouseClick($event)"></canvas>

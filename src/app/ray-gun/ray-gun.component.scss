@@ -1,3 +1,11 @@
+.gradient-config {
+  float: left;
+  margin-left: 12px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
 .canvas {
   position: absolute;
   top: 0;
