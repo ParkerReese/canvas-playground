@@ -5,6 +5,7 @@ export class Laser {
               private yCoord: number,
               private speed: number,
               private length: number,
+              private width: number
   ) {
     this.draw();
   }
@@ -30,7 +31,7 @@ export class Laser {
     linearGradient.addColorStop(1, 'rgba(255,0,0,1)'); // red
     this.ctx.strokeStyle = linearGradient;
 
-    this.ctx.lineWidth = 2;
+    this.ctx.lineWidth = this.width;
 
     this.ctx.shadowBlur = 1;
     this.ctx.shadowColor = "orange";

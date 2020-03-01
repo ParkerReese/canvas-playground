@@ -15,12 +15,21 @@
       </mat-slider>
     </div>
     <div>
-      length:
+      Length:
       <mat-slider [max]="300"
                   [min]="10"
                   thumbLabel="true"
                   color="primary"
                   [(ngModel)]="customLength">
+      </mat-slider>
+    </div>
+    <div>
+      Width:
+      <mat-slider [max]="20"
+                  [min]="1"
+                  thumbLabel="true"
+                  color="primary"
+                  [(ngModel)]="customWidth">
       </mat-slider>
     </div>
   </ng-container>

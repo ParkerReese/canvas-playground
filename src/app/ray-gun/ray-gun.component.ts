@@ -14,9 +14,11 @@ export class RayGunComponent implements OnInit, OnDestroy {
 
   private defaultSpeed = 4;
   private defaultLength = 100;
+  private defaultWidth = 2;
   useCustomConfig = false;
   customSpeed = this.defaultSpeed;
   customLength = this.defaultLength;
+  customWidth = this.defaultWidth;
 
   private lasers: Laser[] = [];
 
@@ -43,13 +45,21 @@ export class RayGunComponent implements OnInit, OnDestroy {
 
   // Handle mouse click event on the canvas
   public mouseClick(event: MouseEvent): void {
-    const speed = this.useCustomConfig ? this.customSpeed : this.defaultSpeed;
-    const length = this.useCustomConfig ? this.customLength : this.defaultLength;
+    let speed, length, width: number;
+    if (this.useCustomConfig) {
+      speed = this.customSpeed;
+      length = this.customLength;
+      width = this.customWidth;
+    } else {
+      speed = this.defaultSpeed;
+      length = this.defaultLength;
+      width = this.defaultWidth;
+    }
     // Need to offset the image of the ray gun cursor
     const xStartPos = event.offsetX - (length/4);
     const yStartPos = event.offsetY + 9;
 
-    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed, length));
+    this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed, length, width));
   }
 
   // Move the circles given their initialized values
