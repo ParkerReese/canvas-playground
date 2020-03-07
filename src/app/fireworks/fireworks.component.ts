@@ -36,21 +36,20 @@ export class FireworksComponent implements OnInit, OnDestroy {
     }, 15);
   }
 
-  // Move the circles given their initialized values
+  // Animate the fireworks
   private animate(): void {
     this.requestedAnimationFrame = requestAnimationFrame(() => this.animate);
 
-    /* Draw the background */
     this.clearCanvas();
 
-    // ensure compositionOperation for our fireworks and particles
-    // lighter creates bright highlight points as the fireworks and particles overlap each other
+    // ensure compositionOperation for our fireworks and particles is 'lighter'
+    // this creates bright highlight points as the fireworks and particles overlap each other
     this.ctx.globalCompositeOperation = 'lighter';
 
     // Move and draw each firework
     this.fireworks.forEach((firework, index) => {
       // Delete fireworks that have hit their destination
-      if (firework.currentPos.y <= firework.target.y) {
+      if (firework.currentPos.y <= firework.target.y) { // This isn't perfectly accurate, but is fine for us
         this.fireworks.splice(index, 1);
         return;
       }
@@ -62,7 +61,7 @@ export class FireworksComponent implements OnInit, OnDestroy {
     // setting the composite operation to destination-out will allow us to clear the canvas at a specific opacity, rather than wiping it entirely
     this.ctx.globalCompositeOperation = 'destination-out';
     // decrease the alpha property to create more prominent trails
-    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
     this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
   }
 
