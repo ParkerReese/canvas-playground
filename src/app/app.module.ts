@@ -12,12 +12,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from '@angular/common';
 import {ColorPickerModule} from "ngx-color-picker";
 import { RayGunComponent } from './ray-gun/ray-gun.component';
+import { FireworksComponent } from './fireworks/fireworks.component';
 
 const appRoutes: Routes = [
-  {path: '', component: MovingCirclesComponent, data: {title: 'Moving Circles'}},
-  {path: 'moving-circles', component: MovingCirclesComponent, data: {title: 'Moving Circles'}},
-  {path: 'lines', component: LinesComponent, data: {title: 'Lines'}},
-  {path: 'ray-gun', component: RayGunComponent, data: {title: 'Ray Gun'}}
+  {path: '', component: MovingCirclesComponent},
+  {path: 'moving-circles', component: MovingCirclesComponent},
+  {path: 'lines', component: LinesComponent},
+  {path: 'ray-gun', component: RayGunComponent},
+  {path: 'fireworks', component: FireworksComponent}
 ];
 
 @NgModule({
@@ -27,6 +29,7 @@ const appRoutes: Routes = [
     MovingCirclesComponent,
     LinesComponent,
     RayGunComponent,
+    FireworksComponent,
   ],
   imports: [
     CommonModule,
