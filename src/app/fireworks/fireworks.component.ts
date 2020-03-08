@@ -49,7 +49,7 @@ export class FireworksComponent implements OnInit, OnDestroy {
     // Move and draw each firework
     this.fireworks.forEach((firework, index) => {
       // Delete fireworks that have hit their destination
-      if (firework.currentPos.y <= firework.target.y) { // This isn't perfectly accurate, but is fine for us
+      if (firework.canDelete) {
         this.fireworks.splice(index, 1);
         return;
       }
