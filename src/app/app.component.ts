@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NavItem} from "./left-nav/left-nav.component";
+import { Component } from '@angular/core';
+import { NavItem } from './left-nav/left-nav.component';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,9 @@ import {NavItem} from "./left-nav/left-nav.component";
 })
 export class AppComponent {
   NavItems: NavItem[] = [
-    {routerLink: 'moving-circles', title:'Moving Circles', icon: 'all_out'},
-    {routerLink: 'lines', title:'Lines', icon: 'line_weight'},
-    {routerLink: 'ray-gun', title:'Ray Gun', icon: 'thumb_up'},
-    {routerLink: 'fireworks', title:'Fireworks', icon: 'flare'}
-  ]
+    { routerLink: 'moving-circles', title: 'Moving Circles', icon: 'all_out' },
+    { routerLink: 'lines', title: 'Lines', icon: 'line_weight' },
+    { routerLink: 'ray-gun', title: 'Ray Gun', icon: 'thumb_up' },
+    { routerLink: 'fireworks', title: 'Fireworks', icon: 'flare' }
+  ];
 }

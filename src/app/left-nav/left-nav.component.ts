@@ -1,9 +1,9 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 export interface NavItem {
-  routerLink: string,
-  title: string,
-  icon: string
+  routerLink: string;
+  title: string;
+  icon: string;
 }
 
 @Component({
