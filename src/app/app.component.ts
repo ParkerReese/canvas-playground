@@ -11,6 +11,7 @@ export class AppComponent {
     { routerLink: 'moving-circles', title: 'Moving Circles', icon: 'all_out' },
     { routerLink: 'lines', title: 'Lines', icon: 'line_weight' },
     { routerLink: 'ray-gun', title: 'Ray Gun', icon: 'thumb_up' },
-    { routerLink: 'fireworks', title: 'Fireworks', icon: 'flare' }
+    { routerLink: 'fireworks', title: 'Fireworks', icon: 'flare' },
+    { routerLink: 'donut', title: 'Donut', icon: 'data_usage' }
   ];
 }

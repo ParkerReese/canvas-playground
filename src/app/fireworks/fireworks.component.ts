@@ -1,5 +1,5 @@
 import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Firework } from "./firework";
+import { Firework } from './firework';
 
 @Component({
   selector: 'app-fireworks',
@@ -58,7 +58,8 @@ export class FireworksComponent implements OnInit, OnDestroy {
   }
 
   private clearCanvas(): void {
-    // setting the composite operation to destination-out will allow us to clear the canvas at a specific opacity, rather than wiping it entirely
+    // setting the composite operation to destination-out will allow us to clear the canvas at a specific opacity,
+    // rather than wiping it entirely
     this.ctx.globalCompositeOperation = 'destination-out';
     // decrease the alpha property to create more prominent trails
     this.ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
@@ -69,7 +70,7 @@ export class FireworksComponent implements OnInit, OnDestroy {
   public mouseClick(event: MouseEvent): void {
     const startPosition = {x: this.ctx.canvas.width / 2, y: this.ctx.canvas.height};
     const target = {x: event.offsetX, y: event.offsetY};
-    this.fireworks.push(new Firework(this.ctx, startPosition, target))
+    this.fireworks.push(new Firework(this.ctx, startPosition, target));
   }
 
   ngOnDestroy(): void {

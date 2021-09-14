@@ -1,23 +1,23 @@
-import { Coordinate, random } from "../shared";
+import { Coordinate, random } from '../shared';
 
 export class Particle {
   // Current actual position
   private curPosition: Coordinate;
   // Used to create a tail
   private pastPositions: Coordinate[] = [];
-  private pastPositionsLength: number = 4;
+  private pastPositionsLength = 4;
   // Angle to move away from explosion location
   private angle: number = random(0, Math.PI * 2);
   // Movement
   private speed: number = random(1, 10);
-  private gravity: number = 1;
-  private friction: number = 0.95;
+  private gravity = 1;
+  private friction = 0.95;
   // How quickly the particle fades
-  private decay: number = random(0.015, 0.04);
-  private alpha: number = 1.5;
+  private decay = random(0.015, 0.04);
+  private alpha = 1.5;
 
   // Used for the owner of this object to know if it can be cleaned up
-  private _canDelete: boolean = false;
+  private canDestroy = false;
 
   constructor(private ctx: CanvasRenderingContext2D,
               // Starting position
@@ -35,7 +35,7 @@ export class Particle {
     this.draw();
 
     if (this.alpha <= this.decay) {
-      this._canDelete = true;
+      this.canDestroy = true;
     }
   }
 
@@ -71,6 +71,6 @@ export class Particle {
   }
 
   public get canDelete() {
-    return this._canDelete;
+    return this.canDestroy;
   }
 }

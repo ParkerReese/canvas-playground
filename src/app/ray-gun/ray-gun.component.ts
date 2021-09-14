@@ -1,13 +1,13 @@
-import {Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Laser} from "./laser";
+import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Laser } from './laser';
 
 @Component({
-  selector: 'ray-gun',
+  selector: 'app-ray-gun',
   templateUrl: './ray-gun.component.html',
   styleUrls: ['./ray-gun.component.scss']
 })
 export class RayGunComponent implements OnInit, OnDestroy {
-  @ViewChild('canvas', {static: true})
+  @ViewChild('canvas', { static: true })
 
   private canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D;
@@ -15,7 +15,7 @@ export class RayGunComponent implements OnInit, OnDestroy {
   private defaultSpeed = 4;
   private defaultLength = 100;
   private defaultWidth = 2;
-  private defaultColor= 'rgba(255,0,0,1)'; // red
+  private defaultColor = 'rgba(255,0,0,1)'; // red
   private defaultGlowColor = 'orange';
   private defaultGlowWidth = 1;
   private defaultTailColor = 'rgba(255,255,255,0)'; // transparent white
@@ -53,7 +53,13 @@ export class RayGunComponent implements OnInit, OnDestroy {
 
   // Handle mouse click event on the canvas
   public mouseClick(event: MouseEvent): void {
-    let speed, length, width, color, glowColor, glowWidth, tailColor;
+    let speed: number;
+    let length: number;
+    let width: number;
+    let color: string;
+    let glowColor: string;
+    let glowWidth: number;
+    let tailColor: string;
     if (this.useCustomConfig) {
       speed = this.customSpeed;
       length = this.customLength;
@@ -72,7 +78,7 @@ export class RayGunComponent implements OnInit, OnDestroy {
       tailColor = this.defaultTailColor;
     }
     // Need to offset the image of the ray gun cursor
-    const xStartPos = event.offsetX - (length/4);
+    const xStartPos = event.offsetX - (length / 4);
     const yStartPos = event.offsetY + 9;
 
     this.lasers.push(new Laser(this.ctx, xStartPos, yStartPos, speed, length, width, color, glowWidth, glowColor, tailColor));
@@ -87,10 +93,10 @@ export class RayGunComponent implements OnInit, OnDestroy {
       // Delete lasers that are off the page so we don't waste time drawing something you can't see
       const length = this.useCustomConfig ? this.customLength : this.defaultLength;
       if (!laser || laser.x > this.ctx.canvas.width + length) {
-        this.lasers.splice(index,1);
+        this.lasers.splice(index, 1);
         return;
       }
-      laser.move()
+      laser.move();
     });
   }
 

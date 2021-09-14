@@ -1,8 +1,8 @@
 import {Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Circle} from "./circle";
+import {Circle} from './circle';
 
 @Component({
-  selector: 'moving-circles',
+  selector: 'app-moving-circles',
   templateUrl: './moving-circles.component.html',
   styleUrls: ['./moving-circles.component.scss']
 })
@@ -57,14 +57,14 @@ export class MovingCirclesComponent implements OnInit, OnDestroy {
       let i = 0;
       while (i < difference) {
         this.instantiateCircle();
-        i++
+        i++;
       }
     } else if (difference < 0) {
       // Remove circles
       let i = 0;
       while (i < -difference) {
         this.circles.pop();
-        i++
+        i++;
       }
     }
   }
@@ -101,7 +101,7 @@ export class MovingCirclesComponent implements OnInit, OnDestroy {
         console.error('Null circle in array');
         return;
       }
-      c.move()
+      c.move();
     });
   }
 

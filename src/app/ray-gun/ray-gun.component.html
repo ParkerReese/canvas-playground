@@ -7,51 +7,35 @@
   <ng-container *ngIf="useCustomConfig">
     <div>
       Speed:
-      <mat-slider [max]="20"
-                  [min]="1"
-                  thumbLabel="true"
-                  color="primary"
-                  [(ngModel)]="customSpeed">
+      <mat-slider [max]="20" [min]="1" thumbLabel="true" color="primary" [(ngModel)]="customSpeed">
       </mat-slider>
     </div>
     <div>
       Length:
-      <mat-slider [max]="300"
-                  [min]="10"
-                  thumbLabel="true"
-                  color="primary"
-                  [(ngModel)]="customLength">
+      <mat-slider [max]="300" [min]="10" thumbLabel="true" color="primary" [(ngModel)]="customLength">
       </mat-slider>
     </div>
     <div>
       Width:
-      <mat-slider [max]="20"
-                  [min]="1"
-                  thumbLabel="true"
-                  color="primary"
-                  [(ngModel)]="customWidth">
+      <mat-slider [max]="20" [min]="1" thumbLabel="true" color="primary" [(ngModel)]="customWidth">
       </mat-slider>
     </div>
     <div>
       Color:
-      <input class='color-picker' [(colorPicker)]="customColor" [style.background]="customColor"/>
+      <input class='color-picker' [(colorPicker)]="customColor" [style.background]="customColor" />
     </div>
     <div>
       Glow Color:
-      <input class='color-picker' [(colorPicker)]="customGlowColor" [style.background]="customGlowColor"/>
+      <input class='color-picker' [(colorPicker)]="customGlowColor" [style.background]="customGlowColor" />
     </div>
     <div>
       Glow Width:
-      <mat-slider [max]="20"
-                  [min]="0"
-                  thumbLabel="true"
-                  color="primary"
-                  [(ngModel)]="customGlowWidth">
+      <mat-slider [max]="20" [min]="0" thumbLabel="true" color="primary" [(ngModel)]="customGlowWidth">
       </mat-slider>
     </div>
     <div>
       Tail Color:
-      <input class='color-picker' [(colorPicker)]="customTailColor" [style.background]="customTailColor"/>
+      <input class='color-picker' [(colorPicker)]="customTailColor" [style.background]="customTailColor" />
     </div>
   </ng-container>
 </div>

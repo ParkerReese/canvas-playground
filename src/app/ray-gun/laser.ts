@@ -1,15 +1,16 @@
 export class Laser {
 
-  constructor(private ctx: CanvasRenderingContext2D,
-              private xCoord: number,
-              private yCoord: number,
-              private speed: number,
-              private length: number,
-              private width: number,
-              private color: string,
-              private glowWidth: number,
-              private glowColor: string,
-              private tailColor: string
+  constructor(
+    private ctx: CanvasRenderingContext2D,
+    private xCoord: number,
+    private yCoord: number,
+    private speed: number,
+    private length: number,
+    private width: number,
+    private color: string,
+    private glowWidth: number,
+    private glowColor: string,
+    private tailColor: string
   ) {
     this.draw();
   }

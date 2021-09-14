@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 interface ColorStop {
-  color: string,
-  offset: number
+  color: string;
+  offset: number;
 }
 
 @Component({
@@ -11,14 +11,14 @@ interface ColorStop {
   styleUrls: ['./lines.component.scss']
 })
 export class LinesComponent implements OnInit {
-  @ViewChild('canvas', {static: true})
+  @ViewChild('canvas', { static: true })
 
   private canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D;
 
   private colors: string[] = ['#ffbd69', '#fe346e', '#b21f66', '#381460'];
   useLinearGradient = false;
-  colorStops: ColorStop[] = [{color: '', offset: 0}, {color: '', offset: 0}];
+  colorStops: ColorStop[] = [{ color: '', offset: 0 }, { color: '', offset: 0 }];
   maxColorStops = 8;
 
   constructor() {
@@ -34,7 +34,7 @@ export class LinesComponent implements OnInit {
   }
 
   public addColorStop() {
-    this.colorStops.push({color: '', offset: 0});
+    this.colorStops.push({ color: '', offset: 0 });
   }
 
   public removeColorStop() {
@@ -47,7 +47,7 @@ export class LinesComponent implements OnInit {
 
   // Handle mouse click event on the canvas
   public mouseClick(event: MouseEvent): void {
-    this.drawLine(event.offsetX, event.offsetY)
+    this.drawLine(event.offsetX, event.offsetY);
   }
 
   // Draw line given input location and global vars
@@ -66,7 +66,7 @@ export class LinesComponent implements OnInit {
       this.ctx.strokeStyle = linearGradient;
     } else {
       // Just choose a random color
-       this.ctx.strokeStyle = this.colors[Math.floor(Math.random() * this.colors.length)];
+      this.ctx.strokeStyle = this.colors[Math.floor(Math.random() * this.colors.length)];
     }
 
     this.ctx.lineTo(xPos, yPos);

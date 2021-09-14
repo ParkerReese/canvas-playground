@@ -14,9 +14,7 @@
     <!--    Left Menu Items-->
     <mat-sidenav #drawer>
       <mat-nav-list>
-        <a *ngFor="let navItem of NavItems"
-           mat-list-item
-           [routerLink]="navItem.routerLink">
+        <a *ngFor="let navItem of NavItems" mat-list-item [routerLink]="navItem.routerLink">
           <mat-icon>{{navItem.icon}}</mat-icon>
           {{navItem.title}}
         </a>
