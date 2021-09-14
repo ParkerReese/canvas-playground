@@ -9,107 +9,150 @@ import * as dat from 'dat.gui';
   styleUrls: ['./donut.component.scss']
 })
 export class DonutComponent implements OnInit {
-
-  // Canvas
   @ViewChild('canvas', { static: true })
-  private canvas: ElementRef<HTMLCanvasElement>;
+  private canvasView: ElementRef<HTMLCanvasElement>;
+  private canvas: HTMLCanvasElement;
 
-  private renderer: THREE.WebGLRenderer;
-
-  private screenSize: {
-    width: number;
-    height: number;
-  };
-
-  // Debug
-  // private gui = new dat.GUI();
-
-  // Scene
-  private scene = new THREE.Scene();
-
-  // Objects
-  private geometry = new THREE.TorusGeometry(.7, .2, 16, 100);
-
-  // Materials
-  private material = new THREE.MeshBasicMaterial();
-
-  // CLOCK
   private clock: THREE.Clock;
-
-  // MESH
-  private sphere: THREE.Mesh;
-
-  // CAMERA
-  private camera = THREE.PerspectiveCamera;
-
+  private camera: THREE.PerspectiveCamera;
   private controls: OrbitControls;
+  private renderer: THREE.WebGLRenderer;
+  private scene: THREE.Scene;
+  private gui: dat.GUI;
 
-
-  private intervalId: any;
-  private requestedAnimationFrame: number;
+  private rotatingMesh: THREE.Mesh[] = [];
 
   constructor(private ngZone: NgZone) {
   }
 
-  ngOnInit(): void {
-    this.screenSize = { width: window.innerWidth, height: window.innerHeight - 64 };
+  initDebugger() {
+    this.gui = new dat.GUI();
+  }
 
-    this.material.color = new THREE.Color(0x00f0ff);
+  initClock(): void {
+    this.clock = new THREE.Clock();
+  }
 
-    this.sphere = new THREE.Mesh(this.geometry, this.material);
-    this.scene.add(this.sphere);
+  initCanvas(): void {
+    this.canvas = this.canvasView.nativeElement;
+  }
 
+  initCamera(viewWidth: number, viewHeight: number): void {
+    if (!this.camera) {
+      this.camera = new THREE.PerspectiveCamera();
+      this.camera.position.x = 0;
+      this.camera.position.y = 0;
+      this.camera.position.z = 2;
+      this.camera.near = 0.1;
+      this.camera.far = 100;
+      this.camera.fov = 70;
+    }
+
+    this.camera.aspect = viewWidth / viewHeight;
+    this.camera.updateProjectionMatrix();
+  }
+
+  initLights(): THREE.Light[] {
     const pointLight = new THREE.PointLight(0x000000, 0.1);
     pointLight.position.x = 2;
     pointLight.position.y = 3;
     pointLight.position.z = 4;
-    this.scene.add(pointLight);
-
-    /**
-     * Camera
-     */
-    // Base camera
-    this.camera = new THREE.PerspectiveCamera(75, this.screenSize.width / this.screenSize.height, 0.1, 100);
-    this.camera.position.x = 0;
-    this.camera.position.y = 0;
-    this.camera.position.z = 2;
-    this.scene.add(this.camera);
-
-    // Controls
-    this.controls = new OrbitControls(this.camera, this.canvas.nativeElement);
-    this.controls.enableDamping = true;
-
-    /**
-     * Renderer
-     */
-    this.renderer = new THREE.WebGLRenderer({
-      canvas: this.canvas.nativeElement
-    });
-
-    this.renderer.setSize(this.screenSize.width, this.screenSize.height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    this.clock = new THREE.Clock();
-
-    this.ngZone.runOutsideAngular(() => this.tick()); // Used to not fire change detection when animating
-    // Call the animate() function ever interval in ms
-    this.intervalId = setInterval(() => {
-      this.tick();
-    }, 15); // 15ms is a little bit faster than 60Hz
+    return [pointLight];
   }
 
-  tick(): void {
-    this.requestedAnimationFrame = requestAnimationFrame(() => this.tick);
+  initMeshs(): THREE.Mesh[] {
+    const geometry = new THREE.TorusGeometry(.7, .2, 16, 100);
+    const material = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(0xFFFFFF),
+      wireframe: true,
+    });
+    const donut = new THREE.Mesh(geometry, material);
+
+    this.rotatingMesh.push(donut);
+    return [donut];
+  }
+
+  initScene(lights: THREE.Light[], meshs: THREE.Mesh[]): void {
+    this.scene = new THREE.Scene();
+
+    meshs?.forEach(mesh => {
+      this.scene.add(mesh);
+    });
+    lights?.forEach(light => {
+      this.scene.add(light);
+    });
+
+    this.scene.add(this.camera);
+  }
+
+  initRenderer(viewWidth: number, viewHeight: number): void {
+    if (!this.renderer) {
+      this.renderer = new THREE.WebGLRenderer({
+        canvas: this.canvas
+      });
+    }
+
+    this.renderer.setSize(viewWidth, viewHeight);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  }
+
+  initControls(): void {
+    this.controls = new OrbitControls(this.camera, this.canvas);
+    this.controls.enableDamping = true;
+  }
+
+  ngOnInit(): void {
+    const width = window.innerWidth;
+    const height = window.innerHeight - 56; // -56 due to top menu bar
+
+    this.initCanvas();
+    this.initCamera(width, height);
+    this.initRenderer(width, height);
+    this.initClock();
+    this.initControls();
+    const lights = this.initLights();
+    const meshs = this.initMeshs();
+    this.initScene(lights, meshs);
+
+    this.animate();
+  }
+
+  animate(): void {
+    // Run outside angular zone to eliminate change dection issues
+    this.ngZone.runOutsideAngular(() => {
+      this.render();
+      window.addEventListener('resize', () => {
+        this.resize();
+      });
+    });
+  }
+
+  // Render a single frame
+  public render(): void {
+    requestAnimationFrame(() => {
+      this.render();
+    });
     const elapsedTime = this.clock.getElapsedTime();
 
-    // // Update objects
-    this.sphere.rotation.y = .5 * elapsedTime;
+    // Update objects
+    this.rotatingMesh?.forEach(mesh => {
+      mesh.rotation.y = .5 * elapsedTime;
+    });
 
     // Update Orbital Controls
     this.controls.update();
 
     // Render
     this.renderer.render(this.scene, this.camera);
+  }
+
+  // Update given new window size
+  public resize(): void {
+    const width = window.innerWidth;
+    const height = window.innerHeight - 56;
+
+    this.initCamera(width, height);
+    this.initRenderer(width, height);
   }
 
 }
