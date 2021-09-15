@@ -14,6 +14,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { RayGunComponent } from './ray-gun/ray-gun.component';
 import { FireworksComponent } from './fireworks/fireworks.component';
 import { DonutComponent } from './threejs/donut/donut.component';
+import { OuterSpaceComponent } from './threejs/outer-space/outer-space.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/moving-circles' },
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
   { path: 'lines', component: LinesComponent },
   { path: 'ray-gun', component: RayGunComponent },
   { path: 'fireworks', component: FireworksComponent },
-  { path: 'donut', component: DonutComponent }
+  { path: 'donut', component: DonutComponent },
+  { path: 'outer-space', component: OuterSpaceComponent }
 ];
 
 @NgModule({
@@ -33,6 +35,7 @@ const appRoutes: Routes = [
     RayGunComponent,
     FireworksComponent,
     DonutComponent,
+    OuterSpaceComponent,
   ],
   imports: [
     CommonModule,

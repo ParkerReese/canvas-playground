@@ -12,6 +12,7 @@ export class AppComponent {
     { routerLink: 'lines', title: 'Lines', icon: 'line_weight' },
     { routerLink: 'ray-gun', title: 'Ray Gun', icon: 'thumb_up' },
     { routerLink: 'fireworks', title: 'Fireworks', icon: 'flare' },
-    { routerLink: 'donut', title: 'Donut', icon: 'data_usage' }
+    { routerLink: 'donut', title: 'Donut', icon: 'data_usage' },
+    { routerLink: 'outer-space', title: 'Outer Space', icon: 'star' }
   ];
 }
